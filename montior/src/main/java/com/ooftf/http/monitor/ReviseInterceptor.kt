@@ -6,6 +6,7 @@ import okhttp3.FormBody
 import okhttp3.Interceptor
 import okhttp3.Response
 import okhttp3.ResponseBody
+import org.json.JSONObject
 
 
 /**
@@ -46,11 +47,11 @@ class ReviseInterceptor : Interceptor {
         fun getRequestBodyString(): String {
             val body = response.request().body()
             return if (body is FormBody) {
-                val json = JsonObject()
+                val json = JSONObject()
                 for (i in 0 until body.size()) {
-                    json.addProperty(body.name(i), body.value(i))
+                    json.put(body.name(i), body.value(i))
                 }
-                json.asString
+                json.toString()
             } else {
                 body.toString()
             }
