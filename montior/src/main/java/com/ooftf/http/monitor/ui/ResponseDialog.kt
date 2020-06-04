@@ -2,6 +2,7 @@ package com.ooftf.http.monitor.ui
 
 import android.app.Dialog
 import android.content.Context
+import android.view.WindowManager
 import com.ooftf.http.monitor.R
 import kotlinx.android.synthetic.main.montior_dialog_response.*
 
@@ -15,9 +16,14 @@ class ResponseDialog(context: Context) : Dialog(context) {
 
     init {
         setContentView(R.layout.montior_dialog_response)
+        val attributes = window!!.attributes
+        attributes.width = WindowManager.LayoutParams.MATCH_PARENT
+        attributes.height = WindowManager.LayoutParams.MATCH_PARENT
+        window!!.attributes = attributes
         ok.setOnClickListener {
             dismiss()
         }
+        setCanceledOnTouchOutside(false)
 
     }
 
@@ -27,6 +33,9 @@ class ResponseDialog(context: Context) : Dialog(context) {
 
     fun setBody(s: String) {
         body.setText(s)
+    }
+    fun setParam(s: String) {
+        param.text = s
     }
 
     fun getBody() = body.text.toString()

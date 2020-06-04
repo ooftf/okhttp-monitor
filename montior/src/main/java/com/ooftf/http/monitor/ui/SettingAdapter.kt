@@ -1,12 +1,13 @@
 package com.ooftf.http.monitor.ui
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
-import com.ooftf.http.monitor.ResponseHandler
 import com.ooftf.http.monitor.R
+import com.ooftf.http.monitor.ResponseHandler
 
 /**
  *
@@ -15,12 +16,12 @@ import com.ooftf.http.monitor.R
  * @date 2020/6/4
  */
 class SettingAdapter : RecyclerView.Adapter<SettingAdapter.ViewHolder>() {
-    lateinit var inflater: LayoutInflater
+    var inflater: LayoutInflater? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         if (inflater == null) {
             inflater = LayoutInflater.from(parent.context)
         }
-        return ViewHolder(inflater.inflate(R.layout.montior_item, parent, false))
+        return ViewHolder(inflater!!.inflate(R.layout.montior_item, parent, false))
     }
 
     override fun getItemCount(): Int {
@@ -28,7 +29,8 @@ class SettingAdapter : RecyclerView.Adapter<SettingAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var item = ResponseHandler.allUrl[position]
+        Log.e("onBindViewHolder","${ResponseHandler.allUrl.size}::$position")
+        val item = ResponseHandler.allUrl[position]
         holder.checkBox.text = item
         holder.checkBox.isChecked = ResponseHandler.interceptUrls.contains(item)
         holder.checkBox.setOnCheckedChangeListener { buttonView, isChecked ->

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Handler
 import android.os.Looper
 import com.ooftf.http.monitor.ui.ResponseDialog
+import com.readystatesoftware.chuck.internal.support.FormatUtils
 
 /**
  *
@@ -22,23 +23,26 @@ object ResponseHandler {
         allUrl.add(s)
     }
 
-    fun handlerResponse(rw: ReviseInterceptor.ResponseWrapper) {
-        if (!interceptUrls.contains(rw.response.request.url.toString())) {
-            rw.isProcess = true
+    fun handleResponse(rw: ReviseInterceptor.ResponseWrapper) {
+        if (!interceptUrls.contains(rw.response.request().url().encodedPath())) {
+            rw.process()
             return
         }
+        val body = rw.json ?: ""
         runOnUiThread(Runnable {
-            val a: Activity = Monitor.m?.getTopActivity() ?: return@Runnable
+            val a: Activity = Monitor.monitorProvider?.getTopActivity() ?: return@Runnable
             try {
-                var dialog = ResponseDialog(a)
-                dialog.setUrl(rw.response.request.url.toString())
-                dialog.setBody(rw.json ?: "")
+                val dialog = ResponseDialog(a)
+                dialog.setUrl(rw.response.request().url().toString())
+                dialog.setBody(FormatUtils.formatJson(body))
+                dialog.setParam(rw.getRequestBodyString())
                 dialog.setOnDismissListener {
                     rw.newJson = dialog.getBody()
                     rw.process()
                 }
                 dialog.show()
             } catch (e: Throwable) {
+                e.printStackTrace()
                 rw.process()
             }
         })

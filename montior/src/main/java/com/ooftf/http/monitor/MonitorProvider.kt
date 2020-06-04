@@ -1,6 +1,7 @@
 package com.ooftf.http.monitor
 
 import android.app.Activity
+import android.app.Application
 
 /**
  *
@@ -10,5 +11,6 @@ import android.app.Activity
  */
 interface MonitorProvider {
     fun getTopActivity(): Activity?
-    //fun getMain
+    fun getApplication(): Application
+    fun isInterceptLog(): Boolean
 }

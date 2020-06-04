@@ -3,6 +3,7 @@ package com.ooftf.http.monitor
 import android.content.Context
 import android.content.Intent
 import com.ooftf.http.monitor.ui.SettingActivity
+import com.readystatesoftware.chuck.Chuck
 
 /**
  *
@@ -11,6 +12,12 @@ import com.ooftf.http.monitor.ui.SettingActivity
  * @date 2020/6/4
  */
 object Monitor {
-    var m: MonitorProvider? = null
+    internal var monitorProvider: MonitorProvider? = null
     fun getSettingIntent(context: Context) = Intent(context, SettingActivity::class.java)
+    fun getLogViewIntent(context: Context) = Chuck.getLaunchIntent(context)
+    fun init(provider: MonitorProvider) {
+        monitorProvider = provider
+    }
+
+
 }

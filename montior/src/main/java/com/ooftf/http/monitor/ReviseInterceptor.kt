@@ -1,7 +1,9 @@
 package com.ooftf.http.monitor
 
+import android.util.Log
+import com.google.gson.JsonObject
+import okhttp3.FormBody
 import okhttp3.Interceptor
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.Response
 import okhttp3.ResponseBody
 
@@ -15,33 +17,57 @@ import okhttp3.ResponseBody
 class ReviseInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        ResponseHandler.addUrl(chain.request().url.toString())
+        Log.e("intercept", chain.request().url().encodedPath())
+        ResponseHandler.addUrl(chain.request().url().encodedPath())
         val response = chain.proceed(chain.request())
         val rw =
             ResponseWrapper(
                 response
             )
-        ResponseHandler.handlerResponse(rw)
+        ResponseHandler.handleResponse(rw)
         while (!rw.isProcess) {
-            Thread.sleep(100)
+            Thread.sleep(500)
         }
-        return rw.response
+        return rw.processResponse()
     }
 
 
     class ResponseWrapper(var response: Response) {
         var isProcess = false
         val json by lazy {
-            response.body?.string()
+            response.body()?.string()
         }
-
         var newJson: String? = null
 
         fun process() {
             isProcess = true
+        }
+
+        fun getRequestBodyString(): String {
+            val body = response.request().body()
+            return if (body is FormBody) {
+                val json = JsonObject()
+                for (i in 0 until body.size()) {
+                    json.addProperty(body.name(i), body.value(i))
+                }
+                json.asString
+            } else {
+                body.toString()
+            }
+        }
+
+        fun processResponse(): Response {
+            if (response.body() == null) {
+                return response
+            }
+            if (response.body()!!.source().isOpen) {
+                return response
+            }
+
             val myBody: ResponseBody =
-                ResponseBody.create("text/plain".toMediaType(), newJson ?: json ?: "")
-            response = response.newBuilder().body(myBody).build()
+                ResponseBody.create(response.body()?.contentType(), newJson ?: json ?: "")
+            return response.newBuilder().body(myBody).build()
+
         }
     }
 }
