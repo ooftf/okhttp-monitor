@@ -1,9 +1,9 @@
 package com.ooftf.http.monitor.ui
 
-import android.app.Dialog
 import android.content.Context
-import android.view.WindowManager
+import android.widget.SeekBar
 import com.ooftf.http.monitor.R
+import com.ooftf.master.widget.dialog.ui.BaseDialog
 import kotlinx.android.synthetic.main.montior_dialog_response.*
 
 /**
@@ -12,19 +12,28 @@ import kotlinx.android.synthetic.main.montior_dialog_response.*
  * @email 994749769@qq.com
  * @date 2020/6/4
  */
-class ResponseDialog(context: Context) : Dialog(context) {
+class ResponseDialog(context: Context) : BaseDialog(context) {
 
     init {
         setContentView(R.layout.montior_dialog_response)
-        val attributes = window!!.attributes
-        attributes.width = WindowManager.LayoutParams.MATCH_PARENT
-        attributes.height = WindowManager.LayoutParams.MATCH_PARENT
-        window!!.attributes = attributes
+        setWidthPercent(1f)
+        setHeightPercent(1f)
         ok.setOnClickListener {
             dismiss()
         }
         setCanceledOnTouchOutside(false)
+        SeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                body.textSize = progress.toFloat()
+            }
 
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+            }
+
+        })
     }
 
     fun setUrl(s: String) {
@@ -34,6 +43,7 @@ class ResponseDialog(context: Context) : Dialog(context) {
     fun setBody(s: String) {
         body.setText(s)
     }
+
     fun setParam(s: String) {
         param.text = s
     }

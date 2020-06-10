@@ -13,7 +13,7 @@ import okhttp3.Response
 class LogViewInterceptor : Interceptor {
     private val interceptor = ChuckInterceptor(Monitor.monitorProvider?.getApplication())
     override fun intercept(chain: Interceptor.Chain): Response {
-        return if (Monitor.monitorProvider?.isInterceptLog() == true) {
+        return if (Monitor.monitorProvider?.isShowLog() == true) {
             interceptor.intercept(chain)
         } else {
             chain.proceed(chain.request())

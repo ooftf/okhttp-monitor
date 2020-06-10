@@ -16,11 +16,19 @@ object ResponseHandler {
 
     val allUrl = ArrayList<String>()
     val interceptUrls = hashSetOf<String>()
+    val disk = DiskObject<ArrayList<String>>()
 
+    init {
+        disk.get()?.let {
+            allUrl.addAll(it)
+        }
+    }
 
     fun addUrl(s: String) {
-        if (allUrl.contains(s)) return
-        allUrl.add(s)
+        if (allUrl.first() == s) return
+        allUrl.remove(s)
+        allUrl.add(0, s)
+        disk.put(allUrl)
     }
 
     fun handleResponse(rw: ReviseInterceptor.ResponseWrapper) {
