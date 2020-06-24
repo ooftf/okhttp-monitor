@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:textColor="#000000"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@null"
                 android:textColor="#000000"
-                android:textSize="10sp" />
+                android:textSize="14sp" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
@@ -61,8 +61,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:max="20"
-        android:min="10"
-        android:progress="10" />
+        android:min="12"
+        android:progress="14" />
 
     <Button
         android:id="@+id/ok"

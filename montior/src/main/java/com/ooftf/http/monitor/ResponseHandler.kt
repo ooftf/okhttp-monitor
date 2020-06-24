@@ -25,7 +25,7 @@ object ResponseHandler {
     }
 
     fun addUrl(s: String) {
-        if (allUrl.first() == s) return
+        if (allUrl.firstOrNull() == s) return
         allUrl.remove(s)
         allUrl.add(0, s)
         disk.put(allUrl)
