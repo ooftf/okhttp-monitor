@@ -1,7 +1,6 @@
 package com.ooftf.http.monitor
 
 import android.util.Log
-import com.google.gson.JsonObject
 import okhttp3.FormBody
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -55,6 +54,10 @@ class ReviseInterceptor : Interceptor {
             } else {
                 body.toString()
             }
+        }
+
+        fun getRequestHeaders(): String {
+            return response.request().headers().toString()
         }
 
         fun processResponse(): Response {

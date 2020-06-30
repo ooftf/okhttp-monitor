@@ -44,6 +44,7 @@ object ResponseHandler {
                 dialog.setUrl(rw.response.request().url().toString())
                 dialog.setBody(FormatUtils.formatJson(body))
                 dialog.setParam(rw.getRequestBodyString())
+                dialog.setHeader(rw.getRequestHeaders())
                 dialog.setOnDismissListener {
                     rw.newJson = dialog.getBody()
                     rw.process()
