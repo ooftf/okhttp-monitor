@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.Switch
 import androidx.recyclerview.widget.RecyclerView
 import com.ooftf.http.monitor.R
 import com.ooftf.http.monitor.ResponseHandler
@@ -43,9 +44,10 @@ class SettingAdapter : RecyclerView.Adapter<SettingAdapter.ViewHolder>() {
                 ResponseHandler.interceptUrls.remove(url)
             }
         }
+
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val checkBox = itemView.findViewById<CheckBox>(R.id.checkbox)
+        val checkBox = itemView.findViewById<Switch>(R.id.checkbox)
     }
 }
