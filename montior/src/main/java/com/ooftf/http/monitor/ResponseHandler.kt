@@ -45,6 +45,7 @@ object ResponseHandler {
                 dialog.setBody(FormatUtils.formatJson(body))
                 dialog.setParam(rw.getRequestBodyString())
                 dialog.setHeader(rw.getRequestHeaders())
+                dialog.setTitle("${rw.getMethod()} : ${rw.getPath()}")
                 dialog.setOnDismissListener {
                     rw.newJson = dialog.getBody()
                     rw.process()

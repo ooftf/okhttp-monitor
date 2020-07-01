@@ -4,6 +4,8 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.graphics.Color
+import android.os.Build
+import android.view.View
 import android.view.WindowManager
 import android.widget.SeekBar
 import android.widget.Toast
@@ -54,6 +56,9 @@ class ResponseDialog(context: Context) :
         //需要设置这个才能设置状态栏和导航栏颜色
         window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window?.statusBarColor = Color.TRANSPARENT
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        }
         window?.setFlags(
             WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,
             WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
@@ -90,6 +95,10 @@ class ResponseDialog(context: Context) :
 
     fun setHeader(s: String) {
         headers.text = s
+    }
+
+    fun setTitle(s: String) {
+        title.text = s
     }
 
     fun getBody() = body.text.toString()

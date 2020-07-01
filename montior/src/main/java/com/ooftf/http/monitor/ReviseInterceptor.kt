@@ -60,6 +60,13 @@ class ReviseInterceptor : Interceptor {
             return response.request().headers().toString()
         }
 
+        fun getPath(): String {
+            return response.request().url().encodedPath()
+        }
+        fun getMethod():String{
+            return response.request().method()
+        }
+
         fun processResponse(): Response {
             if (response.body() == null) {
                 return response
