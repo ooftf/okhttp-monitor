@@ -43,7 +43,7 @@ publish {
     userOrg = 'ooftf' //user name of bintray.com
     groupId = 'com.ooftf' //jcenter's url
     artifactId = 'okhttp-monitor' //project name
-    publishVersion = '0.0.4' //version code
+    publishVersion = '0.0.6' //version code
     desc = 'Montior is a powerful Android library for Modify HTTP request and response data.'
     website = 'https://github.com/ooftf/okhttp-monitor' //website
     bintrayUser = 'ooftf'

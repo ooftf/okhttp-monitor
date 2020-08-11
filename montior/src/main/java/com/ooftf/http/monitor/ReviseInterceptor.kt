@@ -17,6 +17,9 @@ import org.json.JSONObject
 class ReviseInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
+        if (Monitor.monitorProvider == null || Monitor.monitorProvider?.isMockNetData() == false) {
+            return chain.proceed(chain.request())
+        }
         Log.e("intercept", chain.request().url().encodedPath())
         ResponseHandler.addUrl(chain.request().url().encodedPath())
         val response = chain.proceed(chain.request())
@@ -63,7 +66,8 @@ class ReviseInterceptor : Interceptor {
         fun getPath(): String {
             return response.request().url().encodedPath()
         }
-        fun getMethod():String{
+
+        fun getMethod(): String {
             return response.request().method()
         }
 

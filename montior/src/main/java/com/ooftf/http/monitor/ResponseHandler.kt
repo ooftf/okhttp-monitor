@@ -5,6 +5,9 @@ import android.os.Handler
 import android.os.Looper
 import com.ooftf.http.monitor.ui.ResponseDialog
 import com.readystatesoftware.chuck.internal.support.FormatUtils
+import java.util.*
+import java.util.concurrent.CopyOnWriteArrayList
+import kotlin.collections.ArrayList
 
 /**
  *
@@ -14,9 +17,9 @@ import com.readystatesoftware.chuck.internal.support.FormatUtils
  */
 object ResponseHandler {
 
-    val allUrl = ArrayList<String>()
+    val allUrl = CopyOnWriteArrayList<String>()
     val interceptUrls = hashSetOf<String>()
-    val disk = DiskObject<ArrayList<String>>()
+    val disk = DiskObject<CopyOnWriteArrayList<String>>()
 
     init {
         disk.get()?.let {

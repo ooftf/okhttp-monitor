@@ -13,7 +13,8 @@ import java.lang.reflect.Type
 interface MonitorProvider {
     fun getTopActivity(): Activity?
     fun getApplication(): Application
-    fun isShowLog(): Boolean
+    fun isShowNetLog(): Boolean
+    fun isMockNetData(): Boolean
 
     /**
      * Object to json
