@@ -20,8 +20,8 @@ class ReviseInterceptor : Interceptor {
         if (Monitor.monitorProvider == null || Monitor.monitorProvider?.isMockNetData() == false) {
             return chain.proceed(chain.request())
         }
-        Log.e("intercept", chain.request().url().encodedPath())
-        ResponseHandler.addUrl(chain.request().url().encodedPath())
+        Log.e("intercept", chain.request().url.encodedPath)
+        ResponseHandler.addUrl(chain.request().url.encodedPath)
         val response = chain.proceed(chain.request())
         val rw =
             ResponseWrapper(
@@ -38,7 +38,7 @@ class ReviseInterceptor : Interceptor {
     class ResponseWrapper(var response: Response) {
         var isProcess = false
         val json by lazy {
-            response.body()?.string()
+            response.body?.string()
         }
         var newJson: String? = null
 
@@ -47,10 +47,10 @@ class ReviseInterceptor : Interceptor {
         }
 
         fun getRequestBodyString(): String {
-            val body = response.request().body()
+            val body = response.request.body
             return if (body is FormBody) {
                 val json = JSONObject()
-                for (i in 0 until body.size()) {
+                for (i in 0 until body.size) {
                     json.put(body.name(i), body.value(i))
                 }
                 json.toString()
@@ -60,27 +60,27 @@ class ReviseInterceptor : Interceptor {
         }
 
         fun getRequestHeaders(): String {
-            return response.request().headers().toString()
+            return response.request.headers.toString()
         }
 
         fun getPath(): String {
-            return response.request().url().encodedPath()
+            return response.request.url.encodedPath
         }
 
         fun getMethod(): String {
-            return response.request().method()
+            return response.request.method
         }
 
         fun processResponse(): Response {
-            if (response.body() == null) {
+            if (response.body == null) {
                 return response
             }
-            if (response.body()!!.source().isOpen) {
+            if (response.body!!.source().isOpen) {
                 return response
             }
 
             val myBody: ResponseBody =
-                ResponseBody.create(response.body()?.contentType(), newJson ?: json ?: "")
+                ResponseBody.create(response.body?.contentType(), newJson ?: json ?: "")
             return response.newBuilder().body(myBody).build()
 
         }

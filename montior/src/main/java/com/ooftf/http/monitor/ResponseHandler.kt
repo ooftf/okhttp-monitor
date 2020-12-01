@@ -7,7 +7,6 @@ import com.ooftf.http.monitor.ui.ResponseDialog
 import com.readystatesoftware.chuck.internal.support.FormatUtils
 import java.util.*
 import java.util.concurrent.CopyOnWriteArrayList
-import kotlin.collections.ArrayList
 
 /**
  *
@@ -35,7 +34,7 @@ object ResponseHandler {
     }
 
     fun handleResponse(rw: ReviseInterceptor.ResponseWrapper) {
-        if (!interceptUrls.contains(rw.response.request().url().encodedPath())) {
+        if (!interceptUrls.contains(rw.response.request.url.encodedPath)) {
             rw.process()
             return
         }
@@ -44,7 +43,7 @@ object ResponseHandler {
             val a: Activity = Monitor.monitorProvider?.getTopActivity() ?: return@Runnable
             try {
                 val dialog = ResponseDialog(a)
-                dialog.setUrl(rw.response.request().url().toString())
+                dialog.setUrl(rw.response.request.url.toString())
                 dialog.setBody(FormatUtils.formatJson(body))
                 dialog.setParam(rw.getRequestBodyString())
                 dialog.setHeader(rw.getRequestHeaders())
