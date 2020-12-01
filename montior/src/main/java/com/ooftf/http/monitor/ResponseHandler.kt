@@ -3,6 +3,7 @@ package com.ooftf.http.monitor
 import android.app.Activity
 import android.os.Handler
 import android.os.Looper
+import com.ooftf.basic.engine.ActivityManager
 import com.ooftf.http.monitor.ui.ResponseDialog
 import com.readystatesoftware.chuck.internal.support.FormatUtils
 import java.util.*
@@ -18,19 +19,16 @@ object ResponseHandler {
 
     val allUrl = CopyOnWriteArrayList<String>()
     val interceptUrls = hashSetOf<String>()
-    val disk = DiskObject<CopyOnWriteArrayList<String>>()
 
     init {
-        disk.get()?.let {
-            allUrl.addAll(it)
-        }
+        allUrl.addAll(DiskUrls.get())
     }
 
     fun addUrl(s: String) {
         if (allUrl.firstOrNull() == s) return
         allUrl.remove(s)
         allUrl.add(0, s)
-        disk.put(allUrl)
+        DiskUrls.set(allUrl)
     }
 
     fun handleResponse(rw: ReviseInterceptor.ResponseWrapper) {
@@ -40,7 +38,7 @@ object ResponseHandler {
         }
         val body = rw.json ?: ""
         runOnUiThread(Runnable {
-            val a: Activity = Monitor.monitorProvider?.getTopActivity() ?: return@Runnable
+            val a: Activity = ActivityManager.getTopActivity() ?: return@Runnable
             try {
                 val dialog = ResponseDialog(a)
                 dialog.setUrl(rw.response.request.url.toString())

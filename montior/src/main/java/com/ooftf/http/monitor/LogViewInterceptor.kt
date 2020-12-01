@@ -1,5 +1,6 @@
 package com.ooftf.http.monitor
 
+import com.ooftf.basic.AppHolder
 import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -11,7 +12,7 @@ import okhttp3.Response
  * @date 2020/6/4
  */
 class LogViewInterceptor : Interceptor {
-    private val interceptor = ChuckInterceptor(Monitor.monitorProvider?.getApplication())
+    private val interceptor = ChuckInterceptor(AppHolder.app)
     override fun intercept(chain: Interceptor.Chain): Response {
         return if (Monitor.monitorProvider?.isShowNetLog() == true) {
             interceptor.intercept(chain)
