@@ -11,10 +11,10 @@ import okhttp3.Response
  * @email 994749769@qq.com
  * @date 2020/6/4
  */
-class LogViewInterceptor : Interceptor {
+class ChuckInterceptorPro : Interceptor {
     private val interceptor = ChuckInterceptor(AppHolder.app)
     override fun intercept(chain: Interceptor.Chain): Response {
-        return if (Monitor.monitorProvider?.isShowNetLog() == true) {
+        return if (ChunkSwitch.get()) {
             interceptor.intercept(chain)
         } else {
             chain.proceed(chain.request())

@@ -17,7 +17,7 @@ import org.json.JSONObject
 class ReviseInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        if (Monitor.monitorProvider == null || Monitor.monitorProvider?.isMockNetData() == false) {
+        if (!ReviseSwitch.get()) {
             return chain.proceed(chain.request())
         }
         Log.e("intercept", chain.request().url.encodedPath)

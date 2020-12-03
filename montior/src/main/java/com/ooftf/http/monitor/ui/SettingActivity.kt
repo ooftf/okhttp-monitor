@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import com.ooftf.http.monitor.R
+import com.ooftf.http.monitor.ReviseSwitch
 import kotlinx.android.synthetic.main.montior_activity_setting.*
 
 /**
@@ -29,5 +30,6 @@ class SettingActivity : Activity() {
         )
         setContentView(R.layout.montior_activity_setting)
         recyclerView.adapter = SettingAdapter()
+        ReviseSwitch.bind(switchView)
     }
 }
