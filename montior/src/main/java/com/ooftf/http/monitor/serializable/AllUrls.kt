@@ -1,6 +1,5 @@
-package com.ooftf.http.monitor
+package com.ooftf.http.monitor.serializable
 
-import com.google.gson.Gson
 import com.ooftf.basic.engine.serializable.SerializableObject
 import java.util.concurrent.CopyOnWriteArrayList
 
@@ -10,8 +9,8 @@ import java.util.concurrent.CopyOnWriteArrayList
  * @email 994749769@qq.com
  * @date 2020/6/10
  */
-object DiskUrls : SerializableObject<CopyOnWriteArrayList<String>>() {
+object AllUrls : SerializableObject<CopyOnWriteArrayList<String>>() {
     override fun getDefaultValue(): CopyOnWriteArrayList<String> {
-        return CopyOnWriteArrayList()
+        return CopyOnWriteArrayList<String>()
     }
 }

@@ -1,3 +1,4 @@
 include ':montior'
 include ':app'
+include ':director'
 rootProject.name = "Monitor"

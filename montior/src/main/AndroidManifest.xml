@@ -3,6 +3,6 @@
 
     /
     <application>
-        <activity android:name=".ui.SettingActivity" />
+        <activity android:name=".ui.SettingActivity"  android:theme="@style/Chuck.Theme" />
     </application>
 </manifest>

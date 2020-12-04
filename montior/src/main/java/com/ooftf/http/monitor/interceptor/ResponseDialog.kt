@@ -1,4 +1,4 @@
-package com.ooftf.http.monitor.ui
+package com.ooftf.http.monitor.interceptor
 
 import android.content.ClipData
 import android.content.ClipboardManager

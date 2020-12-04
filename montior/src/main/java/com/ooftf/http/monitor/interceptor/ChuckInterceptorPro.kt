@@ -1,6 +1,7 @@
-package com.ooftf.http.monitor
+package com.ooftf.http.monitor.interceptor
 
 import com.ooftf.basic.AppHolder
+import com.ooftf.http.monitor.serializable.ChunkSwitch
 import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.Interceptor
 import okhttp3.Response

@@ -1,13 +1,13 @@
-package com.ooftf.http.monitor
+package com.ooftf.http.monitor.interceptor
 
 import android.app.Activity
 import android.os.Handler
 import android.os.Looper
 import com.ooftf.basic.engine.ActivityManager
-import com.ooftf.http.monitor.ui.ResponseDialog
+import com.ooftf.http.monitor.serializable.AllUrls
+import com.ooftf.http.monitor.serializable.InterceptUrls
 import com.readystatesoftware.chuck.internal.support.FormatUtils
 import java.util.*
-import java.util.concurrent.CopyOnWriteArrayList
 
 /**
  *
@@ -17,22 +17,16 @@ import java.util.concurrent.CopyOnWriteArrayList
  */
 object ResponseHandler {
 
-    val allUrl = CopyOnWriteArrayList<String>()
-    val interceptUrls = hashSetOf<String>()
-
-    init {
-        allUrl.addAll(DiskUrls.get())
-    }
 
     fun addUrl(s: String) {
-        if (allUrl.firstOrNull() == s) return
-        allUrl.remove(s)
-        allUrl.add(0, s)
-        DiskUrls.set(allUrl)
+        if (AllUrls.get().firstOrNull() == s) return
+        AllUrls.get().remove(s)
+        AllUrls.get().add(0, s)
+        AllUrls.sync()
     }
 
     fun handleResponse(rw: ReviseInterceptor.ResponseWrapper) {
-        if (!interceptUrls.contains(rw.response.request.url.encodedPath)) {
+        if (!InterceptUrls.get().contains(rw.response.request.url.encodedPath)) {
             rw.process()
             return
         }

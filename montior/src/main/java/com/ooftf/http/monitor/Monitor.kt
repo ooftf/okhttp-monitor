@@ -2,14 +2,12 @@ package com.ooftf.http.monitor
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
-import android.view.Gravity
-import android.widget.Switch
 import androidx.appcompat.widget.SwitchCompat
-import com.lzf.easyfloat.EasyFloat
-import com.lzf.easyfloat.enums.ShowPattern
 import com.ooftf.basic.AppHolder
 import com.ooftf.basic.armor.ActivityLifecycleCallbacksArmor
+import com.ooftf.http.monitor.interceptor.ChuckInterceptorPro
+import com.ooftf.http.monitor.interceptor.ReviseInterceptor
+import com.ooftf.http.monitor.serializable.ChunkSwitch
 import com.ooftf.http.monitor.ui.SettingActivity
 import com.readystatesoftware.chuck.Chuck
 import com.readystatesoftware.chuck.internal.ui.MainActivity
@@ -33,22 +31,7 @@ object Monitor {
             ActivityLifecycleCallbacksArmor(
                 onActivityPostCreated = { activity, bundle ->
                     if (activity is MainActivity) {
-                        Log.e("activity","activity")
-                        val float = EasyFloat.getFloatView(activity)
-                        if(float == null){
-                            EasyFloat
-                                .with(activity)
-                                .setLayout(R.layout.montior_ooftf_chuck_switch) {
-                                    ChunkSwitch.bind(it.findViewById<SwitchCompat>(R.id.switchView))
-                                }
-                                .setGravity(Gravity.END or Gravity.TOP, 0, 200)
-                                .setDragEnable(false)
-                                .setShowPattern(ShowPattern.CURRENT_ACTIVITY)
-                                .show()
-                        }else{
-                            EasyFloat.show(activity)
-                        }
-
+                        ChunkSwitch.bind(activity.findViewById<SwitchCompat>(R.id.switchView))
                     }
                 })
         )

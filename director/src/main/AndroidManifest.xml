@@ -1,0 +1,17 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ooftf.director">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <application>
+        <activity
+            android:name=".entrance.DebugEntranceActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/Chuck.Theme" />
+        <activity
+            android:name=".info.DebugInfoActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/Chuck.Theme" />
+    </application>
+</manifest>

@@ -1,4 +1,4 @@
-package com.ooftf.http.monitor
+package com.ooftf.http.monitor.serializable
 
 import com.ooftf.basic.engine.serializable.SerializableBoolean
 
