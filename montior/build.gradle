@@ -36,13 +36,13 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     implementation 'com.readystatesoftware.chuck:library:1.1.0'
-    implementation 'com.ooftf:master-widget-dialog:1.1.1'
+    implementation 'com.ooftf:master-widget-dialog:1.2.0'
     api 'com.ooftf:basic:0.2.5'
 }
 
 publish {
     artifactId = 'okhttp-monitor' //project name
-    publishVersion = '0.0.9' //version code
+    publishVersion = '0.1.0' //version code
     desc = 'Montior is a powerful Android library for Modify HTTP request and response data.'
     website = 'https://github.com/ooftf/okhttp-monitor' //website
 }

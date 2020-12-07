@@ -1,6 +1,7 @@
 package com.ooftf.director.app
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.view.Gravity
 import android.view.View
@@ -20,7 +21,6 @@ import com.ooftf.basic.utils.toast
 import com.ooftf.director.*
 import com.ooftf.director.entrance.DebugEntranceActivity
 import com.ooftf.http.monitor.Monitor
-import com.ooftf.master.widget.dialog.inteface.ListDialogInterface
 import com.ooftf.master.widget.dialog.ui.ListDialog
 import com.ooftf.master.widget.dialog.utils.DialogUtil
 
@@ -34,25 +34,35 @@ object PanelDialog {
     internal val items by lazy {
         ArrayList<Item>().apply {
             add(Item("当前Activity名称") { toast(getTopActivityName(), duration = Toast.LENGTH_LONG) })
-            add(Item("当前Fragment名称") { toast(getCurrentFragmentName(), duration = Toast.LENGTH_LONG) })
+            add(Item("当前Fragment名称") {
+                toast(
+                    getCurrentFragmentName(),
+                    duration = Toast.LENGTH_LONG
+                )
+            })
             add(Item("显示当前LOG") {
                 showLogDialog()
             })
             add(Item("调试功能界面") {
-                AppHolder.app.startActivity(Intent(AppHolder.app, DebugEntranceActivity::class.java))
+                AppHolder.app.startActivity(
+                    Intent(
+                        AppHolder.app,
+                        DebugEntranceActivity::class.java
+                    )
+                )
             })
             add(Item("网络接口日志") {
                 AppHolder.app.startActivity(
-                        Monitor.getNetLogIntent(
-                                AppHolder.app
-                        )
+                    Monitor.getNetLogIntent(
+                        AppHolder.app
+                    )
                 )
             })
             add(Item("网络接口Mock") {
                 AppHolder.app.startActivity(
-                        Monitor.getNetMockIntent(
-                                AppHolder.app
-                        )
+                    Monitor.getNetMockIntent(
+                        AppHolder.app
+                    )
                 )
             })
             add(Item("滴滴调试面板") {
@@ -88,13 +98,16 @@ object PanelDialog {
                 return
             }
             ListDialog(topActivity)
-                    .setList(items.map { it.key.value })
-                    .setShowCancel(true)
-                    .setOnItemClickListener { dialog: ListDialogInterface, position: Int, item: String? ->
+                .apply {
+                    setList(items.map { it.key.value })
+                    setShowCancel(true)
+                    setOnItemClickListener { dialog: DialogInterface, position: Int, item: String ->
                         dialog.dismiss()
                         items[position].listener?.invoke()
                     }
-                    .show_()
+                    show()
+                }
+
         }
 
     }
@@ -124,18 +137,18 @@ object PanelDialog {
         val appFloatView = EasyFloat.getAppFloatView(tag)
         if (appFloatView == null) {
             EasyFloat
-                    .with(context)
-                    .setLayout(R.layout.director_ooftf_float_view, OnInvokeView {
-                        it.setOnClickListener {
-                            showFeaturesDialog()
-                        }
-                    })
-                    .setSidePattern(SidePattern.DEFAULT)
-                    .setShowPattern(ShowPattern.FOREGROUND)
-                    .setTag(tag)
-                    .setGravity(Gravity.END or Gravity.BOTTOM, -100, -260)
-                    .setMatchParent(widthMatch = false, heightMatch = false)
-                    .show()
+                .with(context)
+                .setLayout(R.layout.director_ooftf_float_view) {
+                    it.setOnClickListener {
+                        showFeaturesDialog()
+                    }
+                }
+                .setSidePattern(SidePattern.DEFAULT)
+                .setShowPattern(ShowPattern.FOREGROUND)
+                .setTag(tag)
+                .setGravity(Gravity.END or Gravity.BOTTOM, -100, -260)
+                .setMatchParent(widthMatch = false, heightMatch = false)
+                .show()
         } else {
             EasyFloat.showAppFloat(tag)
         }
