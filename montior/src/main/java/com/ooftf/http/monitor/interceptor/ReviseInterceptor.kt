@@ -6,6 +6,7 @@ import okhttp3.FormBody
 import okhttp3.Interceptor
 import okhttp3.Response
 import okhttp3.ResponseBody
+import okhttp3.internal.wait
 import org.json.JSONObject
 
 
@@ -32,6 +33,7 @@ class ReviseInterceptor : Interceptor {
         while (!rw.isProcess) {
             Thread.sleep(500)
         }
+
         return rw.processResponse()
     }
 
