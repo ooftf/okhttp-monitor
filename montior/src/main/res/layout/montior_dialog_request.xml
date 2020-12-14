@@ -39,6 +39,7 @@
             android:layout_weight="1"
             android:checked="true"
             android:paddingEnd="12dp"
+            android:theme="@style/Theme.AppCompat.Light"
             app:showText="false" />
     </LinearLayout>
 
