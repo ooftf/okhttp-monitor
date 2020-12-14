@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import com.ooftf.http.monitor.R
-import com.ooftf.http.monitor.serializable.InterceptUrls
+import com.ooftf.http.monitor.serializable.ResponseUrls
 import com.ooftf.http.monitor.serializable.ReviseSwitch
 import kotlinx.android.synthetic.main.montior_activity_setting.*
 
@@ -33,7 +33,7 @@ class SettingActivity : Activity() {
         recyclerView.adapter = SettingAdapter()
         ReviseSwitch.bind(switchView) { buttonView, isChecked ->
             if (!isChecked) {
-                InterceptUrls.clear()
+                ResponseUrls.clear()
                 recyclerView.adapter?.notifyDataSetChanged()
             }
         }

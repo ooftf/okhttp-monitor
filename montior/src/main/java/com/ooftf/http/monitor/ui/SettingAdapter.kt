@@ -4,12 +4,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ooftf.basic.utils.getActivity
-import com.ooftf.http.monitor.serializable.AllUrls
-import com.ooftf.http.monitor.serializable.InterceptUrls
 import com.ooftf.http.monitor.R
+import com.ooftf.http.monitor.serializable.AllUrls
+import com.ooftf.http.monitor.serializable.RequestUrls
+import com.ooftf.http.monitor.serializable.ResponseUrls
 import com.ooftf.http.monitor.serializable.ReviseSwitch
 import kotlinx.android.synthetic.main.montior_activity_setting.*
 
@@ -35,14 +37,14 @@ class SettingAdapter : RecyclerView.Adapter<SettingAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Log.e("onBindViewHolder", "${AllUrls.get().size}::$position")
         val item = AllUrls.get()[position]
-        holder.checkBox.text = item
-        holder.checkBox.isChecked = InterceptUrls.get().contains(item)
-        holder.checkBox.setOnClickListener {
-            val url = holder.checkBox.text.toString()
-            if (holder.checkBox.isChecked) {
-                if (!InterceptUrls.get().contains(url)) {
-                    InterceptUrls.get().add(url)
-                    InterceptUrls.sync()
+        holder.text.text = item
+        holder.responseSwitch.isChecked = ResponseUrls.get().contains(item)
+        holder.responseSwitch.setOnClickListener {
+            val url = holder.text.toString()
+            if (holder.responseSwitch.isChecked) {
+                if (!ResponseUrls.get().contains(url)) {
+                    ResponseUrls.get().add(url)
+                    ResponseUrls.sync()
                 }
                 if (!ReviseSwitch.get()) {
                     (it.context.getActivity() as? SettingActivity)?.let {
@@ -50,14 +52,35 @@ class SettingAdapter : RecyclerView.Adapter<SettingAdapter.ViewHolder>() {
                     }
                 }
             } else {
-                InterceptUrls.get().remove(url)
-                InterceptUrls.sync()
+                ResponseUrls.get().remove(url)
+                ResponseUrls.sync()
+            }
+        }
+
+        holder.request.isChecked = RequestUrls.get().contains(item)
+        holder.request.setOnClickListener {
+            val url = holder.text.text.toString()
+            if (holder.request.isChecked) {
+                if (!RequestUrls.get().contains(url)) {
+                    RequestUrls.get().add(url)
+                    RequestUrls.sync()
+                }
+                if (!ReviseSwitch.get()) {
+                    (it.context.getActivity() as? SettingActivity)?.let {
+                        it.switchView.performClick()
+                    }
+                }
+            } else {
+                RequestUrls.get().remove(url)
+                RequestUrls.sync()
             }
         }
 
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val checkBox = itemView.findViewById<SwitchCompat>(R.id.checkbox)
+        val responseSwitch = itemView.findViewById<SwitchCompat>(R.id.responseSwitch)
+        val text = itemView.findViewById<TextView>(R.id.text)
+        val request = itemView.findViewById<SwitchCompat>(R.id.request)
     }
 }

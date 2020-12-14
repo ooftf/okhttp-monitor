@@ -22,6 +22,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 repositories {
     maven { url 'https://jitpack.io' }
@@ -37,12 +44,12 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     implementation 'com.readystatesoftware.chuck:library:1.1.0'
     implementation 'com.ooftf:master-widget-dialog:1.2.0'
-    api 'com.ooftf:basic:0.2.5'
+    api 'com.ooftf:basic:0.2.7'
 }
 
 publish {
     artifactId = 'okhttp-monitor' //project name
-    publishVersion = '0.1.0' //version code
+    publishVersion = '0.1.1-beta5' //version code
     desc = 'Montior is a powerful Android library for Modify HTTP request and response data.'
     website = 'https://github.com/ooftf/okhttp-monitor' //website
 }

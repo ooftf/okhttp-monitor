@@ -38,7 +38,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:checked="true"
-            android:paddingEnd="12dp" />
+            android:paddingEnd="12dp"
+            app:showText="false" />
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -55,6 +56,25 @@
             android:orientation="vertical"
             android:paddingStart="8dp"
             android:paddingEnd="8dp">
+
+            <TextView
+                android:id="@+id/method"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/monitor_logo"
+                android:drawablePadding="8dp"
+                android:text="METHOD"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <com.ooftf.basic.widget.RecyclerViewPro
+                android:id="@+id/methodRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="5" />
 
             <TextView
                 android:id="@+id/urlTitle"
@@ -91,44 +111,30 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/headers"
-                android:layout_width="wrap_content"
+            <com.ooftf.basic.widget.RecyclerViewPro
+                android:id="@+id/headerRecyclerView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:textColor="#000000"
-                android:textSize="14sp" />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             <TextView
-                android:id="@+id/paramTitle"
+                android:id="@+id/addHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:padding="16dp"
+                android:text="添加Header"
+                android:textColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/requestTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:drawableStart="@drawable/monitor_logo"
                 android:drawablePadding="8dp"
-                android:text="PARAM"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/param"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:textColor="#000000"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/responseTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:drawableStart="@drawable/monitor_logo"
-                android:drawablePadding="8dp"
-                android:text="RESPONSE"
+                android:text="REQUEST_BODY"
                 android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold" />

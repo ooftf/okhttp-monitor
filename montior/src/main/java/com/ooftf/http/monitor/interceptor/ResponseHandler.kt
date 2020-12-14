@@ -4,9 +4,11 @@ import android.app.Activity
 import android.os.Handler
 import android.os.Looper
 import com.ooftf.basic.engine.ActivityManager
-import com.ooftf.http.monitor.serializable.AllUrls
-import com.ooftf.http.monitor.serializable.InterceptUrls
+import com.ooftf.http.monitor.serializable.ResponseUrls
 import com.readystatesoftware.chuck.internal.support.FormatUtils
+import okhttp3.Response
+import okhttp3.internal.notify
+import okhttp3.internal.wait
 import java.util.*
 
 /**
@@ -18,18 +20,11 @@ import java.util.*
 object ResponseHandler {
 
 
-    fun addUrl(s: String) {
-        if (AllUrls.get().firstOrNull() == s) return
-        AllUrls.get().remove(s)
-        AllUrls.get().add(0, s)
-        AllUrls.sync()
+    fun isNeedHandler(response: Response): Boolean {
+        return ResponseUrls.get().contains(response.request.url.encodedPath)
     }
 
-    fun handleResponse(rw: ReviseInterceptor.ResponseWrapper) {
-        if (!InterceptUrls.get().contains(rw.response.request.url.encodedPath)) {
-            rw.process()
-            return
-        }
+    fun handleResponse(rw: ResponseWrapper) {
         val body = rw.json ?: ""
         runOnUiThread(Runnable {
             val a: Activity = ActivityManager.getTopActivity() ?: return@Runnable
@@ -42,16 +37,21 @@ object ResponseHandler {
                 dialog.setTitle("${rw.getMethod()} : ${rw.getPath()}")
                 dialog.setOnDismissListener {
                     rw.newJson = dialog.getBody()
-                    rw.process()
+                    synchronized(rw) {
+                        rw.notify()
+                    }
                 }
                 dialog.show()
             } catch (e: Throwable) {
                 e.printStackTrace()
-                rw.process()
+                synchronized(rw) {
+                    rw.notify()
+                }
             }
         })
-
-
+        synchronized(rw) {
+            rw.wait()
+        }
     }
 
     private val mainHandler = Handler(Looper.getMainLooper())

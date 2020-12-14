@@ -9,7 +9,7 @@ import java.util.concurrent.CopyOnWriteArraySet
  * @email 994749769@qq.com
  * @date 2020/12/4
  */
-object InterceptUrls : SerializableObject<CopyOnWriteArraySet<String>>() {
+object ResponseUrls : SerializableObject<CopyOnWriteArraySet<String>>() {
     override fun getDefaultValue(): CopyOnWriteArraySet<String> {
         return CopyOnWriteArraySet()
     }
