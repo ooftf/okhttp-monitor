@@ -38,7 +38,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:checked="true"
-            android:paddingEnd="12dp" />
+            android:paddingEnd="12dp"
+            android:theme="@style/basic_ooftf_SwitchAccentTheme" />
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
