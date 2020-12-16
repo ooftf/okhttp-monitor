@@ -40,7 +40,7 @@ class ReviseInterceptor : Interceptor {
 
     fun addUrl(s: String) {
         AllUrls.get().remove(s)
-        AllUrls.get().add(s)
+        AllUrls.get().add(0, s)
         AllUrls.sync()
     }
 

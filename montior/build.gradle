@@ -44,12 +44,12 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     implementation 'com.readystatesoftware.chuck:library:1.1.0'
     implementation 'com.ooftf:master-widget-dialog:1.2.1'
-    api 'com.ooftf:basic:0.2.8'
+    api 'com.ooftf:basic:0.2.9'
 }
 
 publish {
     artifactId = 'okhttp-monitor' //project name
-    publishVersion = '0.1.1' //version code
+    publishVersion = '1.0.7' //version code
     desc = 'Montior is a powerful Android library for Modify HTTP request and response data.'
     website = 'https://github.com/ooftf/okhttp-monitor' //website
 }

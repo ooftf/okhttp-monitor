@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.montior_activity_setting.*
  * @date 2020/6/4
  */
 class SettingAdapter : RecyclerView.Adapter<SettingAdapter.ViewHolder>() {
+    val data = ArrayList<String>(AllUrls.get())
     var inflater: LayoutInflater? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         if (inflater == null) {
@@ -31,16 +32,16 @@ class SettingAdapter : RecyclerView.Adapter<SettingAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return AllUrls.get().size
+        return data.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Log.e("onBindViewHolder", "${AllUrls.get().size}::$position")
-        val item = AllUrls.get()[position]
+        Log.e("onBindViewHolder", "${data.size}::$position")
+        val item = data[position]
         holder.text.text = item
         holder.responseSwitch.isChecked = ResponseUrls.get().contains(item)
         holder.responseSwitch.setOnClickListener {
-            val url = holder.text.toString()
+            val url = holder.text.text.toString()
             if (holder.responseSwitch.isChecked) {
                 if (!ResponseUrls.get().contains(url)) {
                     ResponseUrls.get().add(url)
