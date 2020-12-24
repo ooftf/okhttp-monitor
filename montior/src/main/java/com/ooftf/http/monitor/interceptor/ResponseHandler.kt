@@ -3,9 +3,11 @@ package com.ooftf.http.monitor.interceptor
 import android.app.Activity
 import android.os.Handler
 import android.os.Looper
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonParseException
+import com.google.gson.JsonParser
 import com.ooftf.basic.engine.ActivityManager
 import com.ooftf.http.monitor.serializable.ResponseUrls
-import com.readystatesoftware.chuck.internal.support.FormatUtils
 import okhttp3.Response
 import okhttp3.internal.notify
 import okhttp3.internal.wait
@@ -31,7 +33,7 @@ object ResponseHandler {
             try {
                 val dialog = ResponseDialog(a)
                 dialog.setUrl(rw.response.request.url.toString())
-                dialog.setBody(FormatUtils.formatJson(body))
+                dialog.setBody(formatJson(body))
                 dialog.setParam(rw.getRequestBodyString())
                 dialog.setHeader(rw.getRequestHeaders())
                 dialog.setTitle("${rw.getMethod()} : ${rw.getPath()}")
@@ -65,5 +67,22 @@ object ResponseHandler {
 
     fun isMainThread(): Boolean {
         return Thread.currentThread() === Looper.getMainLooper().thread
+    }
+
+    val gons by lazy {
+        GsonBuilder()
+            .disableHtmlEscaping()
+            .serializeNulls()
+            .setPrettyPrinting()
+            .create()
+    }
+
+    fun formatJson(json: String): String {
+        return try {
+            val je = JsonParser.parseString(json)
+            gons.toJson(je)
+        } catch (e: JsonParseException) {
+            json
+        }
     }
 }

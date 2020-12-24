@@ -64,7 +64,7 @@
   DOKIT_METHOD_STRATEGY=0
 
 ### 需要的地方
-  implementation 'com.ooftf:director:1.0.2'
+   implementation 'com.ooftf:director:1.0.2'
    debugImplementation 'com.didichuxing.doraemonkit:dokitx:3.3.5'
    releaseImplementation 'com.didichuxing.doraemonkit:dokitx-no-op:3.3.5'
 ### 初始化

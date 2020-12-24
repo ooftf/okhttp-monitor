@@ -11,7 +11,7 @@
                 <item >
                     <shape>
                         <corners android:radius="500dp"/>
-                        <solid android:color="@color/chuck_colorAccent"/>
+                        <solid android:color="@color/colorAccent"/>
                         <size android:height="2dp"/>
                     </shape>
                 </item>

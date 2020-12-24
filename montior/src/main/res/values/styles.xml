@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimaryDark">@color/chuck_colorPrimaryDark</color>
-    <color name="colorAccent">@color/chuck_colorAccent</color>
+    <color name="colorPrimaryDark">@color/chucker_color_primary</color>
+    <color name="colorAccent">@color/chucker_color_primary_variant</color>
 
-    <style name="Chuck.Theme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Chucker.Theme" parent="Chucker.BaseTheme">
+        <item name="android:textDirection">locale</item>
+        <item name="android:textAlignment">viewStart</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
 </resources>
