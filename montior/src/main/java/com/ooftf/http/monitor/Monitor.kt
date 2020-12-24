@@ -26,14 +26,14 @@ object Monitor {
         } else {
             isInit = true
         }
-        /*AppHolder.app.registerActivityLifecycleCallbacks(
+        AppHolder.app.registerActivityLifecycleCallbacks(
             ActivityLifecycleCallbacksArmor(
                 onActivityPostCreated = { activity, bundle ->
-                    if (activity is com.chuckerteam.chucker.internal.ui.MainActivity) {
+                    if (activity.javaClass.name == "com.chuckerteam.chucker.internal.ui.MainActivity") {
                         ChunkSwitch.bind(activity.findViewById<SwitchCompat>(R.id.switchView))
                     }
                 })
-        )*/
+        )
     }
 
     fun getNetMockIntent(context: Context) =

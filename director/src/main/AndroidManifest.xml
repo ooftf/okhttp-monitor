@@ -8,10 +8,10 @@
         <activity
             android:name=".entrance.DebugEntranceActivity"
             android:launchMode="singleTask"
-            android:theme="@style/Chuck.Theme" />
+            android:theme="@style/Chucker.Theme" />
         <activity
             android:name=".info.DebugInfoActivity"
             android:launchMode="singleTask"
-            android:theme="@style/Chuck.Theme" />
+            android:theme="@style/Chucker.Theme" />
     </application>
 </manifest>
