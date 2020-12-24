@@ -49,7 +49,7 @@ dependencies {
 
 publish {
     artifactId = 'okhttp-monitor' //project name
-    publishVersion = '1.0.9' //version code
+    publishVersion = '1.1.0' //version code
     desc = 'Montior is a powerful Android library for Modify HTTP request and response data.'
     website = 'https://github.com/ooftf/okhttp-monitor' //website
 }
