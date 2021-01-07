@@ -96,7 +96,7 @@ class RequestDialog(context: Context) : BaseDialog(context) {
     }
 
     fun setUrl(urlString: String) {
-        url.text = urlString
+        url.setText(urlString)
     }
 
     fun getUrl(): String {
