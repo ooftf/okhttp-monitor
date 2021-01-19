@@ -16,20 +16,23 @@
             android:layout_height="?attr/actionBarSize"
             app:popupTheme="@style/Chucker.Theme" />
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
-            style="@style/Widget.MaterialComponents.TabLayout.PrimarySurface"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="6dp"
             android:text="收集接口日志"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/chucker_color_on_primary"
             android:textStyle="bold" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            style="@style/Widget.MaterialComponents.TabLayout.PrimarySurface"
+            android:layout_width="match_parent"
+            android:layout_height="44dp" />
+
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager

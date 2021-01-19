@@ -1,8 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ooftf.http.monitor">
 
-    /
     <application>
-        <activity android:name=".ui.SettingActivity"  android:theme="@style/Chucker.Theme" />
+        <activity android:name=".ui.SettingActivity"  android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 </manifest>

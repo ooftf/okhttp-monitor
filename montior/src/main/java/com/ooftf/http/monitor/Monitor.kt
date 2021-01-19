@@ -2,10 +2,14 @@ package com.ooftf.http.monitor
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.appcompat.widget.SwitchCompat
+import androidx.lifecycle.LifecycleOwner
 import com.chuckerteam.chucker.api.Chucker
 import com.ooftf.basic.AppHolder
 import com.ooftf.basic.armor.ActivityLifecycleCallbacksArmor
+import com.ooftf.basic.utils.addOnStartListener
+import com.ooftf.basic.utils.postOnStart
 import com.ooftf.http.monitor.interceptor.ChuckInterceptorPro
 import com.ooftf.http.monitor.interceptor.ReviseInterceptor
 import com.ooftf.http.monitor.serializable.ChunkSwitch
@@ -28,9 +32,14 @@ object Monitor {
         }
         AppHolder.app.registerActivityLifecycleCallbacks(
             ActivityLifecycleCallbacksArmor(
-                onActivityPostCreated = { activity, bundle ->
+                onActivityCreated = { activity, bundle ->
                     if (activity.javaClass.name == "com.chuckerteam.chucker.internal.ui.MainActivity") {
-                        ChunkSwitch.bind(activity.findViewById<SwitchCompat>(R.id.switchView))
+                        (activity as? LifecycleOwner)?.let {
+                            it.lifecycle.postOnStart(){
+                                ChunkSwitch.bind(activity.findViewById<SwitchCompat>(R.id.switchView))
+                            }
+                        }
+
                     }
                 })
         )

@@ -10,7 +10,6 @@ import com.didichuxing.doraemonkit.DoraemonKit
 import com.lzf.easyfloat.EasyFloat
 import com.lzf.easyfloat.enums.ShowPattern
 import com.lzf.easyfloat.enums.SidePattern
-import com.lzf.easyfloat.interfaces.OnInvokeView
 import com.lzf.easyfloat.interfaces.OnPermissionResult
 import com.lzf.easyfloat.permission.PermissionUtils
 import com.ooftf.basic.AppHolder
@@ -55,14 +54,18 @@ object PanelDialog {
                 AppHolder.app.startActivity(
                     Monitor.getNetLogIntent(
                         AppHolder.app
-                    )
+                    ).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    }
                 )
             })
             add(Item("网络接口Mock") {
                 AppHolder.app.startActivity(
                     Monitor.getNetMockIntent(
                         AppHolder.app
-                    )
+                    ).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    }
                 )
             })
             add(Item("滴滴调试面板") {
