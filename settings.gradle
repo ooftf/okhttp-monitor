@@ -1,3 +1,4 @@
+include ':director-no-op'
 include ':montior'
 include ':app'
 include ':director'
