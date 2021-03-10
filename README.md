@@ -35,5 +35,5 @@ Monitor.getNetMockIntent()
 Monitor.getNetLogIntent()
 ```
 # director
-director是一整套调试系统包含一些入口UI和 okhttp-monitor  dokit
+director集成了一整套调试系统，包含一些入口UI和 okhttp-monitor  dokit  
 [集成文档](/director/README.md)
