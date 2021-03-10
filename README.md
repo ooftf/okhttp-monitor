@@ -25,8 +25,10 @@ dependencies {
 }
 
 ```
-### Application
+### 代码
 ```
+// Application中初始化
+Monitor.init()
 // 添加拦截器
 okHttpBuild.applyMonitor()
 // 由于默认是不开启任何请求，需要进入设置页面打开总开关，之后网络请求会出现在可拦截列表中
@@ -36,4 +38,5 @@ Monitor.getNetLogIntent()
 ```
 # director
 director集成了一整套调试系统，包含一些入口UI和 okhttp-monitor  dokit  
+如果集成了director就不用集成okHttp-monitor了  
 [集成文档](/director/README.md)

@@ -64,12 +64,12 @@
       DOKIT_METHOD_STRATEGY=0
 
 ### 需要的地方
-   implementation 'com.ooftf:director:1.0.2'
-   debugImplementation 'com.didichuxing.doraemonkit:dokitx:3.3.5'
-   releaseImplementation 'com.didichuxing.doraemonkit:dokitx-no-op:3.3.5'
+       implementation 'com.ooftf:director:1.0.2'
+       debugImplementation 'com.didichuxing.doraemonkit:dokitx:3.3.5'
+       releaseImplementation 'com.didichuxing.doraemonkit:dokitx-no-op:3.3.5'
 ### 初始化
   Director.init("b6a6080607d1a37310565aca1998e0e9",BuildConfig.DEBUG)
 ### okhttp添加拦截器
    Director.getReviseInterceptor()，Director.getLogViewInterceptor()
-### 设置点击开启入口
+### 设置点击开启入口 连续点击多下，打开浮窗权限就可以看到入口了
    Director.setDebugEntranceView(v)
