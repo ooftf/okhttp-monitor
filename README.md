@@ -1,5 +1,7 @@
 # Monitor
 发送网络请求时，能够查看和修改请求和响应内容
+----------------------
+[ ![Download](https://api.bintray.com/packages/ooftf/maven/okhttp-monitor/images/download.svg) ](https://bintray.com/ooftf/maven/okhttp-monitor/_latestVersion)
 ## 运行效果图
 ### 请求
 <img src="/art/request.png" alt="图片替换文本" width="360" height="800" align="bottom" />
