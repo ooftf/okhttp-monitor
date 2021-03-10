@@ -3,7 +3,37 @@
 ## 运行效果图
 ### 请求
 <img src="/art/request.png" alt="图片替换文本" width="360" height="800" align="bottom" />
+
 ### 响应
 <img src="/art/response.png" alt="图片替换文本" width="360" height="800" align="bottom" />
+
 ## 集成文档
+
+### Gradle
+```
+// Project
+allprojects {
+    repositories {
+        maven {
+            url "https://dl.bintray.com/ooftf/maven"
+        }
+    }
+}
+// APP
+dependencies {
+    implementation 'com.ooftf:okhttp-monitor:1.1.2'
+}
+
+```
+### Application
+```
+// 添加拦截器
+okHttpBuild.applyMonitor()
+// 由于默认是不开启任何请求，需要进入设置页面打开总开关，之后网络请求会出现在可拦截列表中
+Monitor.getNetMockIntent()
+// 只查看日志页面
+Monitor.getNetLogIntent()
+```
+# director
+director是一整套调试系统包含一些入口UI和 okhttp-monitor  dokit
 [集成文档](/director/README.md)

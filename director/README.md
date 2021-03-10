@@ -46,22 +46,22 @@
 
 
 ## gradle.properties
-  # dokit全局配置
-  # 插件开关
-  DOKIT_PLUGIN_SWITCH=true
-  # DOKIT读取三方库会和booster冲突 如果你的项目中也集成了booster 建议将开关改成false
-  DOKIT_THIRD_LIB_SWITCH=true
-  # 插件日志
-  DOKIT_LOG_SWITCH=true
-  # 自定义Webview的全限定名 主要是作用于h5 js抓包和数据mock
-  DOKIT_WEBVIEW_CLASS_NAME=com/didichuxing/doraemonkit/widget/webview/MyWebView
-  # dokit 慢函数开关
-  DOKIT_METHOD_SWITCH=true
-  # dokit 函数调用栈层级
-  DOKIT_METHOD_STACK_LEVEL=4
-  # 0:默认模式 打印函数调用栈 需添加指定入口  默认为application onCreate 和attachBaseContext
-  # 1:普通模式 运行时打印某个函数的耗时 全局业务代码函数插入
-  DOKIT_METHOD_STRATEGY=0
+      # dokit全局配置
+      # 插件开关
+      DOKIT_PLUGIN_SWITCH=true
+      # DOKIT读取三方库会和booster冲突 如果你的项目中也集成了booster 建议将开关改成false
+      DOKIT_THIRD_LIB_SWITCH=true
+      # 插件日志
+      DOKIT_LOG_SWITCH=true
+      # 自定义Webview的全限定名 主要是作用于h5 js抓包和数据mock
+      DOKIT_WEBVIEW_CLASS_NAME=com/didichuxing/doraemonkit/widget/webview/MyWebView
+      # dokit 慢函数开关
+      DOKIT_METHOD_SWITCH=true
+      # dokit 函数调用栈层级
+      DOKIT_METHOD_STACK_LEVEL=4
+      # 0:默认模式 打印函数调用栈 需添加指定入口  默认为application onCreate 和attachBaseContext
+      # 1:普通模式 运行时打印某个函数的耗时 全局业务代码函数插入
+      DOKIT_METHOD_STRATEGY=0
 
 ### 需要的地方
    implementation 'com.ooftf:director:1.0.2'
@@ -72,4 +72,4 @@
 ### okhttp添加拦截器
    Director.getReviseInterceptor()，Director.getLogViewInterceptor()
 ### 设置点击开启入口
-Director.setDebugEntranceView(v)
+   Director.setDebugEntranceView(v)
