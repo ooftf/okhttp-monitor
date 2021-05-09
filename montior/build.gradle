@@ -1,17 +1,13 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'ooftf-publish'
+apply plugin: 'ooftf-maven'
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-
+        minSdkVersion 16
+        targetSdkVersion 30
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -29,6 +25,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures{
+        viewBinding = true
+    }
 }
 repositories {
     maven { url 'https://jitpack.io' }
@@ -36,22 +35,19 @@ repositories {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation("com.squareup.okhttp3:okhttp:4.9.0")
+    implementation("com.squareup.okhttp3:okhttp:4.9.1")
     implementation 'com.github.chuckerteam.chucker:library:3.4.0'
-    implementation 'com.ooftf:master-widget-dialog:1.2.1'
-    api 'com.ooftf:basic:0.2.11'
+    implementation 'com.github.ooftf:master-widget-dialog:1.2.2'
+    api 'com.github.ooftf:basic:0.3.0'
 }
 
 publish {
     artifactId = 'okhttp-monitor' //project name
-    publishVersion = '1.1.2' //version code
-    desc = 'Montior is a powerful Android library for Modify HTTP request and response data.'
-    website = 'https://github.com/ooftf/okhttp-monitor' //website
-    override true
+    version = '1.2.0' //version code
 }
 

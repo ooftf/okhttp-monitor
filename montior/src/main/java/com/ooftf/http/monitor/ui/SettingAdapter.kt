@@ -13,7 +13,6 @@ import com.ooftf.http.monitor.serializable.AllUrls
 import com.ooftf.http.monitor.serializable.RequestUrls
 import com.ooftf.http.monitor.serializable.ResponseUrls
 import com.ooftf.http.monitor.serializable.ReviseSwitch
-import kotlinx.android.synthetic.main.montior_activity_setting.*
 
 /**
  *
@@ -49,7 +48,7 @@ class SettingAdapter : RecyclerView.Adapter<SettingAdapter.ViewHolder>() {
                 }
                 if (!ReviseSwitch.get()) {
                     (it.context.getActivity() as? SettingActivity)?.let {
-                        it.switchView.performClick()
+                        it.binding.switchView.performClick()
                     }
                 }
             } else {
@@ -68,7 +67,7 @@ class SettingAdapter : RecyclerView.Adapter<SettingAdapter.ViewHolder>() {
                 }
                 if (!ReviseSwitch.get()) {
                     (it.context.getActivity() as? SettingActivity)?.let {
-                        it.switchView.performClick()
+                        it.binding.switchView.performClick()
                     }
                 }
             } else {

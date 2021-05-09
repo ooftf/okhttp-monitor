@@ -3,10 +3,10 @@ package com.ooftf.http.monitor.interceptor
 import android.content.Context
 import android.widget.SeekBar
 import com.ooftf.http.monitor.R
+import com.ooftf.http.monitor.databinding.MontiorDialogResponseBinding
 import com.ooftf.http.monitor.serializable.ResponseUrls
 import com.ooftf.http.monitor.util.CopyUtil
 import com.ooftf.master.widget.dialog.ui.BaseDialog
-import kotlinx.android.synthetic.main.montior_dialog_response.*
 
 
 /**
@@ -17,23 +17,23 @@ import kotlinx.android.synthetic.main.montior_dialog_response.*
  */
 class ResponseDialog(context: Context) :
     BaseDialog(context) {
-
+    val binding = MontiorDialogResponseBinding.inflate(layoutInflater)
     init {
-        setContentView(R.layout.montior_dialog_response)
+        setContentView(binding.root)
         setWidthMatchParent()
         setHeightMatchParent()
         setImmersion()
-        ok.setOnClickListener {
+        binding.ok.setOnClickListener {
             dismiss()
         }
         setCanceledOnTouchOutside(false)
-        SeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.SeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 val size = 12 + (progress.toFloat() / 10)
-                body.textSize = size
-                url.textSize = size
-                param.textSize = size
-                headers.textSize = size
+                binding.body.textSize = size
+                binding.url.textSize = size
+                binding.param.textSize = size
+                binding.headers.textSize = size
 
             }
 
@@ -45,55 +45,55 @@ class ResponseDialog(context: Context) :
 
         })
 
-        urlTitle.setOnLongClickListener {
-            CopyUtil.copyText("URL", url.text)
+        binding.urlTitle.setOnLongClickListener {
+            CopyUtil.copyText("URL", binding.url.text)
             true
         }
-        headerTitle.setOnLongClickListener {
-            CopyUtil.copyText("HEADER", headers.text)
+        binding.headerTitle.setOnLongClickListener {
+            CopyUtil.copyText("HEADER", binding.headers.text)
             true
         }
-        paramTitle.setOnLongClickListener {
-            CopyUtil.copyText("PARAM", param.text)
+        binding.paramTitle.setOnLongClickListener {
+            CopyUtil.copyText("PARAM", binding.param.text)
             true
         }
-        responseTitle.setOnLongClickListener {
-            CopyUtil.copyText("RESPONSE", body.text)
+        binding.responseTitle.setOnLongClickListener {
+            CopyUtil.copyText("RESPONSE", binding.body.text)
             true
         }
 
-        switchView.setOnClickListener {
-            if (switchView.isChecked) {
-                ResponseUrls.get().add(title.text.toString())
+        binding.switchView.setOnClickListener {
+            if (binding.switchView.isChecked) {
+                ResponseUrls.get().add(binding.title.text.toString())
                 ResponseUrls.sync()
             } else {
-                ResponseUrls.get().remove(title.text.toString())
+                ResponseUrls.get().remove(binding.title.text.toString())
                 ResponseUrls.sync()
             }
         }
     }
 
     fun setUrl(s: String) {
-        url.text = s
+        binding.url.text = s
     }
 
     fun setBody(s: String) {
-        body.setText(s)
+        binding.body.setText(s)
     }
 
     fun setParam(s: String) {
-        param.text = s
+        binding.param.text = s
     }
 
     fun setHeader(s: String) {
-        headers.text = s
+        binding.headers.text = s
     }
 
     fun setTitle(s: String) {
-        title.text = s
+        binding.title.text = s
     }
 
-    fun getBody() = body.text.toString()
+    fun getBody() = binding.body.text.toString()
 
 
 }

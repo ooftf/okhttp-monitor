@@ -4,10 +4,10 @@ import android.content.Context
 import android.util.Log
 import android.widget.SeekBar
 import com.ooftf.http.monitor.R
+import com.ooftf.http.monitor.databinding.MontiorDialogRequestBinding
 import com.ooftf.http.monitor.serializable.RequestUrls
 import com.ooftf.http.monitor.util.CopyUtil
 import com.ooftf.master.widget.dialog.ui.BaseDialog
-import kotlinx.android.synthetic.main.montior_dialog_request.*
 import okhttp3.Headers
 
 /**
@@ -19,21 +19,22 @@ import okhttp3.Headers
 class RequestDialog(context: Context) : BaseDialog(context) {
     val methodAdapter = MethodAdapter()
     val headerAdapter = HeaderAdapter()
-
+    val binding = MontiorDialogRequestBinding.inflate(layoutInflater)
     init {
-        setContentView(R.layout.montior_dialog_request)
+
+        setContentView(binding.root)
         setWidthMatchParent()
         setHeightMatchParent()
         setImmersion()
-        ok.setOnClickListener {
+        binding.ok.setOnClickListener {
             dismiss()
         }
         setCanceledOnTouchOutside(false)
-        SeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.SeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 val size = 12 + (progress.toFloat() / 10)
-                body.textSize = size
-                url.textSize = size
+                binding.body.textSize = size
+                binding.url.textSize = size
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -45,37 +46,37 @@ class RequestDialog(context: Context) : BaseDialog(context) {
         })
 
 
-        urlTitle.setOnLongClickListener {
-            CopyUtil.copyText("URL", url.text)
+        binding.urlTitle.setOnLongClickListener {
+            CopyUtil.copyText("URL", binding.url.text)
             true
         }
 
-        requestTitle.setOnLongClickListener {
-            CopyUtil.copyText("REQUEST_BODY", body.text)
+        binding.requestTitle.setOnLongClickListener {
+            CopyUtil.copyText("REQUEST_BODY", binding.body.text)
             true
         }
 
 
-        methodRecyclerView.adapter = methodAdapter
-        headerRecyclerView.adapter = headerAdapter
-        addHeader.setOnClickListener {
+        binding.methodRecyclerView.adapter = methodAdapter
+        binding.headerRecyclerView.adapter = headerAdapter
+        binding.addHeader.setOnClickListener {
             headerAdapter.header.add(KV("", ""))
             headerAdapter.notifyDataSetChanged()
         }
 
-        switchView.setOnClickListener {
-            if (switchView.isChecked) {
-                RequestUrls.get().add(title.text.toString())
+        binding.switchView.setOnClickListener {
+            if (binding.switchView.isChecked) {
+                RequestUrls.get().add(binding.title.text.toString())
                 RequestUrls.sync()
             } else {
-                RequestUrls.get().remove(title.text.toString())
+                RequestUrls.get().remove(binding.title.text.toString())
                 RequestUrls.sync()
             }
         }
     }
 
     fun setTitle(s: String) {
-        title.text = s
+        binding.title.text = s
     }
 
     fun setMethod(method: String) {
@@ -88,19 +89,19 @@ class RequestDialog(context: Context) : BaseDialog(context) {
     }
 
     fun setRequestBody(bodyString: String) {
-        body.setText(bodyString)
+        binding.body.setText(bodyString)
     }
 
     fun getRequestBody(): String {
-        return body.text.toString()
+        return binding.body.text.toString()
     }
 
     fun setUrl(urlString: String) {
-        url.setText(urlString)
+        binding.url.setText(urlString)
     }
 
     fun getUrl(): String {
-        return url.text.toString()
+        return binding.url.text.toString()
     }
 
     fun setHeader(headers: Headers) {
@@ -112,7 +113,7 @@ class RequestDialog(context: Context) : BaseDialog(context) {
     }
 
     fun setRequestEnabled(enabled: Boolean) {
-        body.isEnabled = enabled
+        binding.body.isEnabled = enabled
     }
 
     fun getHeader(): Headers {
@@ -124,7 +125,7 @@ class RequestDialog(context: Context) : BaseDialog(context) {
     }
 
     fun setRequestType(requestBodyType: String) {
-        requestTitle.text = "REQUEST_BODY（${requestBodyType}）"
+        binding.requestTitle.text = "REQUEST_BODY（${requestBodyType}）"
     }
 
 }

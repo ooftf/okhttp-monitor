@@ -1,6 +1,6 @@
 # director
-[ ![Download](https://api.bintray.com/packages/ooftf/maven/director/images/download.svg) ](https://bintray.com/ooftf/maven/director/_latestVersion)
- [ ![Download](https://api.bintray.com/packages/ooftf/maven/director-no-op/images/download.svg) ](https://bintray.com/ooftf/maven/director-no-op/_latestVersion)
+[ ![Download](https://maven-badges.herokuapp.com/maven-central/com.github.ooftf/director/badge.svg) ](https://maven-badges.herokuapp.com/maven-central/com.github.ooftf/director)
+[ ![Download](https://maven-badges.herokuapp.com/maven-central/com.github.ooftf/director-no-op/badge.svg) ](https://maven-badges.herokuapp.com/maven-central/com.github.ooftf/director-no-op)
 ## 项目级 build.gradle
   classpath 'com.didichuxing.doraemonkit:dokitx-plugin:3.3.5'
 ## app下的build.gradle
@@ -67,8 +67,8 @@
       DOKIT_METHOD_STRATEGY=0
 
 ### 需要的地方
-       debugImplementation 'com.ooftf:director:1.1.3'
-       releaseImplementation 'com.ooftf:director-no-op:1.1.3'
+       debugImplementation 'com.github.ooftf:director:1.2.0'
+       releaseImplementation 'com.github.ooftf:director-no-op:1.2.0'
 ### 初始化
   Director.init("b6a6080607d1a37310565aca1998e0e9",BuildConfig.DEBUG)
 ### okhttp添加拦截器

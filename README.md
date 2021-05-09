@@ -16,14 +16,12 @@
 // Project
 allprojects {
     repositories {
-        maven {
-            url "https://dl.bintray.com/ooftf/maven"
-        }
+        mavenCentral()
     }
 }
 // APP
 dependencies {
-    implementation 'com.ooftf:okhttp-monitor:1.1.2'
+    implementation 'com.github.ooftf:okhttp-monitor:1.2.0'
 }
 
 ```
