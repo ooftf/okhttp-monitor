@@ -40,5 +40,4 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     api project(":director")
     api project(":montior")
-    implementation('com.didichuxing.doraemonkit:dokitx:3.3.5')
 }

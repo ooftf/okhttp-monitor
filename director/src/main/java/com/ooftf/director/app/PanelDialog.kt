@@ -6,7 +6,7 @@ import android.content.Intent
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
-import com.didichuxing.doraemonkit.DoraemonKit
+import com.didichuxing.doraemonkit.DoKit
 import com.lzf.easyfloat.EasyFloat
 import com.lzf.easyfloat.enums.ShowPattern
 import com.lzf.easyfloat.enums.SidePattern
@@ -47,7 +47,9 @@ object PanelDialog {
                     Intent(
                         AppHolder.app,
                         DebugEntranceActivity::class.java
-                    )
+                    ).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    }
                 )
             })
             add(Item("网络接口日志") {
@@ -69,7 +71,7 @@ object PanelDialog {
                 )
             })
             add(Item("滴滴调试面板") {
-                DoraemonKit.showToolPanel()
+                DoKit.showToolPanel()
             })
             addAll(Director.customPanelItems)
         }

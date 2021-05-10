@@ -1,7 +1,7 @@
 package com.ooftf.director.app
 
 import android.view.View
-import com.didichuxing.doraemonkit.DoraemonKit
+import com.didichuxing.doraemonkit.DoKit
 import com.lzf.easyfloat.EasyFloat
 import com.lzf.easyfloat.permission.PermissionUtils
 import com.ooftf.basic.AppHolder
@@ -20,8 +20,11 @@ object Director {
         }
         EasyFloat.init(AppHolder.app, debug)
         Monitor.init()
-        DoraemonKit.setAwaysShowMainIcon(false)
-        DoraemonKit.install(AppHolder.app, doraemonKitProductId)
+        DoKit.Builder(AppHolder.app)
+            .awaysShowMainIcon(false)
+            .productId(doraemonKitProductId)
+            .build()
+
         ShowEntranceSwitch.get().takeIf { it }?.takeIf { PermissionUtils.checkPermission(AppHolder.app) }?.let {
             PanelDialog.showFloat(
                     AppHolder.app
