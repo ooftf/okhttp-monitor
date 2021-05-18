@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.ooftf.director.CommonListViewModel&lt;com.ooftf.director.Item>" />
+            type="com.ooftf.director.CommonListViewModel" />
     </data>
 
     <LinearLayout

@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.location.LocationManager
 import com.blankj.utilcode.util.*
+import com.ooftf.basic.armor.ObservableArrayListPro
 import com.ooftf.director.CommonListViewModel
 import com.ooftf.director.Item
 import com.ooftf.director.R
@@ -14,7 +15,8 @@ import com.ooftf.director.R
  * @email 994749769@qq.com
  * @date 2020/5/21
  */
-class DebugInfoViewModel(application: Application) : CommonListViewModel<Item>(application) {
+class DebugInfoViewModel(application: Application) : CommonListViewModel(application) {
+
     init {
         title.postValue("调试信息")
 /*        items.add(Pair("打包时间", iGlobalParamProviders.buildTime()))
@@ -38,7 +40,4 @@ class DebugInfoViewModel(application: Application) : CommonListViewModel<Item>(a
     }
 
 
-    override fun getItemLayout(): Int {
-        return R.layout.director_ooftf_item
-    }
 }

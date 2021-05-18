@@ -5,9 +5,11 @@ import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import com.alibaba.android.arouter.facade.annotation.Route
-import com.ooftf.arch.frame.mvvm.activity.BaseMvvmActivity
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.ooftf.director.Item
+import com.ooftf.director.R
 import com.ooftf.director.databinding.DirectorOoftfActivityCommonListBinding
 
 /**
@@ -16,10 +18,15 @@ import com.ooftf.director.databinding.DirectorOoftfActivityCommonListBinding
  * @email 994749769@qq.com
  * @date 2020/5/21
  */
-@Route(path = "/debug/DebugInfo")
-class DebugInfoActivity : BaseMvvmActivity<DirectorOoftfActivityCommonListBinding, DebugInfoViewModel>() {
+class DebugInfoActivity :
+    AppCompatActivity() {
+    val viewModel :DebugInfoViewModel by viewModels()
+    lateinit var binding: DirectorOoftfActivityCommonListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.director_ooftf_activity_common_list)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
         viewModel.items.add(Item("定位权限", isPermissions().toString()))
     }
 
