@@ -10,7 +10,7 @@ import com.ooftf.director.databinding.DirectorOoftfActivityCommonListBinding
 import com.ooftf.director.info.DebugInfoViewModel
 
 class TraceListActivity: AppCompatActivity() {
-    val viewModel : DebugInfoViewModel by viewModels()
+    val viewModel : TraceListViewModel by viewModels()
     lateinit var binding: DirectorOoftfActivityCommonListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

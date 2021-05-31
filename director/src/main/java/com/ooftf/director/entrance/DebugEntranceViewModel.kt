@@ -14,6 +14,7 @@ import com.ooftf.director.app.Director
 import com.ooftf.director.app.PanelDialog
 import com.ooftf.director.app.ShowEntranceSwitch
 import com.ooftf.director.info.DebugInfoActivity
+import com.ooftf.director.trace.TraceListActivity
 import com.ooftf.http.monitor.Monitor
 
 class DebugEntranceViewModel(application: Application) :
@@ -35,7 +36,19 @@ class DebugEntranceViewModel(application: Application) :
                     })
             }
         )
-
+        items.add(
+            Item(
+                "DebugTrace 列表"
+            ) {
+                AppHolder.app.startActivity(
+                    Intent(
+                        AppHolder.app,
+                        TraceListActivity::class.java
+                    ).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    })
+            }
+        )
         items.add(Item("显示工具浮窗").apply {
             isChecked.value = isDevShow()
             val action = Observer<Boolean> {

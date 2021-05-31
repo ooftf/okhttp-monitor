@@ -7,11 +7,12 @@
     <application>
         <activity
             android:name=".entrance.DebugEntranceActivity"
-            android:launchMode="singleTask"
-            android:theme="@style/Chucker.Theme" />
+            android:launchMode="singleTask" />
         <activity
             android:name=".info.DebugInfoActivity"
             android:launchMode="singleTask"
-            android:theme="@style/Chucker.Theme" />
+           />
+        <activity android:name=".trace.TraceDetailActivity" />
+        <activity android:name=".trace.TraceListActivity" />
     </application>
 </manifest>
