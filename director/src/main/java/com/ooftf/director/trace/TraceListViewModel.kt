@@ -16,7 +16,7 @@ class TraceListViewModel(application: Application) : CommonListViewModel(applica
             items.add(
                 Item(
                     it.name,
-                    "${(it.length().toFloat()/8/1024/1024).format("0.00")}MB        ${TimeUtils.millis2String(it.lastModified())}"
+                    "${(it.length().toFloat()/1024/1024).format("0.00")}MB        ${TimeUtils.millis2String(it.lastModified())}"
                 ) {
                     AppHolder.app.startActivity(
                         Intent(
