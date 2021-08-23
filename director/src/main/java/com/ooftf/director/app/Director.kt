@@ -21,7 +21,7 @@ object Director {
         EasyFloat.init(AppHolder.app, debug)
         Monitor.init()
         DoKit.Builder(AppHolder.app)
-            .awaysShowMainIcon(false)
+            .alwaysShowMainIcon(false)
             .productId(doraemonKitProductId)
             .build()
 

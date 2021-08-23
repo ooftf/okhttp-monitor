@@ -26,7 +26,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures{
-        viewBinding = true
+        viewBinding true
     }
 }
 repositories {
@@ -42,8 +42,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation("com.squareup.okhttp3:okhttp:4.9.1")
     implementation 'com.github.chuckerteam.chucker:library:3.4.0'
-    implementation 'com.github.ooftf:master-widget-dialog:1.2.2'
-    api 'com.github.ooftf:basic:0.3.0'
+    implementation 'com.github.ooftf:master-widget-dialog:1.2.4'
+    api 'com.github.ooftf:basic:0.4.2'
 }
 
 publish {

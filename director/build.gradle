@@ -23,7 +23,7 @@ android {
 
 }
 publish {
-    version = '1.3.2'
+    version = '1.3.3'
 }
 
 dependencies {
@@ -33,23 +33,23 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.3.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation 'com.github.ooftf:master-widget-dialog:1.2.3'
+    implementation 'com.github.ooftf:master-widget-dialog:1.2.4'
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
     implementation 'com.github.princekin-f:EasyFloat:1.3.3'
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
-    implementation "com.github.ooftf:basic:0.3.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1"
+    implementation "com.github.ooftf:basic:0.4.2"
     implementation 'com.github.ooftf:okhttp-monitor:1.2.0'
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
-    implementation 'com.blankj:utilcodex:1.30.5'
+    implementation 'com.blankj:utilcodex:1.30.6'
     implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:4.0.0'
     implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:4.0.0'
     //核心模块
-    implementation "io.github.didi.dokit:dokitx:3.4.0-alpha04"
+    implementation "io.github.didi.dokit:dokitx:3.4.3"
     //文件同步模块
-    implementation "io.github.didi.dokit:dokitx-ft:3.4.0-alpha04"
+    implementation "io.github.didi.dokit:dokitx-ft:3.4.3"
     //一机多控模块
-    implementation "io.github.didi.dokit:dokitx-mc:3.4.0-alpha04"
+    implementation "io.github.didi.dokit:dokitx-mc:3.4.3"
     def lifecycle_version = "2.3.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 }

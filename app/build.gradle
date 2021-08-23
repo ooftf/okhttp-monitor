@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-
+apply from: 'didi.gradle'
 android {
     compileSdkVersion 30
 
