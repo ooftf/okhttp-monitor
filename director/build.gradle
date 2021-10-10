@@ -23,12 +23,12 @@ android {
 
 }
 publish {
-    version = '1.3.3'
+    version = '1.3.4'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.3.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -45,11 +45,11 @@ dependencies {
     implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:4.0.0'
     implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:4.0.0'
     //核心模块
-    implementation "io.github.didi.dokit:dokitx:3.4.3"
+    implementation "io.github.didi.dokit:dokitx:3.5.0"
     //文件同步模块
-    implementation "io.github.didi.dokit:dokitx-ft:3.4.3"
+    implementation "io.github.didi.dokit:dokitx-ft:3.5.0"
     //一机多控模块
-    implementation "io.github.didi.dokit:dokitx-mc:3.4.3"
+    implementation "io.github.didi.dokit:dokitx-mc:3.5.0"
     def lifecycle_version = "2.3.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 }
